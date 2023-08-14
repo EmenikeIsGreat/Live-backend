@@ -1,0 +1,16 @@
+{
+  "name": "live-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testSpotofyAPI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^5.7.0",
+    "path": "^0.12.7",
+    "twilio": "^4.15.0"
+  }
+}
