@@ -11,14 +11,10 @@ const client = new MongoClient(process.env.MONGODB_URL);
 
 const venue = {
     Name:"",
-    coordinate:[],
     population:0,
-    genderBreakdown:{
-        male:0,
-        female:0,
-        other:0
-    },
-    majorBreakdown:[{math:0.06}],
+    male:0,
+    female:0,
+    other:0,
     Admin:"",
     venueType:"",
     location: {
@@ -27,6 +23,16 @@ const venue = {
     }
 
 }
+
+async function initIndex(){
+    await client.connect()
+    let venuesDB = await client.db('Live').collection('Venues')
+    await venuesDB.createIndex({ location: "2dsphere" });
+    await client.close()
+}
+
+//initIndex()
+
 
 async function createVenue(venue){
     

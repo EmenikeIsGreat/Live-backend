@@ -21,7 +21,7 @@ async function AddSampleLocations() {
     await client.connect();
     let locationDB = await client.db('todo').collection('userLocation')
     // Create a 2dsphere index
-    await locationDB.createIndex({ location: "2dsphere" });
+    //await locationDB.createIndex({ location: "2dsphere" });
 
     // Insert documents with GeoJSON location data
     await locationDB.insertOne({
@@ -31,13 +31,13 @@ async function AddSampleLocations() {
     }
     });
 
-    let res = await locationDB.insertOne({
-    location: {
-        type: "Point",
-        coordinates: [-122.4783, 37.8199]
-    }
-    });
-    console.log(res)
+    // let res = await locationDB.insertOne({
+    // location: {
+    //     type: "Point",
+    //     coordinates: [-122.4783, 37.8199]
+    // }
+    // });
+    // console.log(res)
     // Perform a geospatial query using the 2dsphere index
 
     await client.close()
@@ -48,7 +48,7 @@ async function AddSampleLocations() {
 
 async function findNearest(){
     await client.connect();
-    let locationDB = await client.db('todo').collection('userLocation')
+    let locationDB = await client.db('Live').collection('User')
     let cursor = await locationDB.find({
         location: {
             $near: {
