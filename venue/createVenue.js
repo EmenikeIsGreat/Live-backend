@@ -10,6 +10,7 @@ const client = new MongoClient(process.env.MONGODB_URL);
 
 
 const venue = {
+    placeId: "",
     Name:"",
     population:0,
     male:0,
