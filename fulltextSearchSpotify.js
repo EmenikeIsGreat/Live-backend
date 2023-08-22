@@ -94,4 +94,4 @@ async function getAll(){
     console.log("done")
 }
 //getAll()
-searchArtists("JZ")
+searchArtists("Dak")
