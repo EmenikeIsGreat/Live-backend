@@ -48,7 +48,8 @@ io.on("connection", (socket) => {
         body
     )=>{
 
-    socket.to(venue).emit("recieve-message",
+    // emit to everyone
+    io.in(venue).emit("recieve-message",
         userName,
         userId,
         replyingTo,
@@ -58,9 +59,6 @@ io.on("connection", (socket) => {
         body
     )
     
-    console.log(userName,venue,userId)
-    
-    // emit this to veneu for recieve message
         
     
     })

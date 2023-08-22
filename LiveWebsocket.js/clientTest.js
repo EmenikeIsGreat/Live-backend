@@ -1,11 +1,13 @@
 const { io } = require("socket.io-client")
 
-const socket = io("ws://localhost:3000");
+const socket = io("ws://3.81.218.118:3000");
 
 // Listen for the roomCount event before emitting the join-room event
 
 
-socket.emit("join-room", "checkers")
+socket.emit("join-room", "checkers",(res)=>{
+    console.log(res)
+})
 
 socket.on("roomCount", message => {
     console.log(message)
