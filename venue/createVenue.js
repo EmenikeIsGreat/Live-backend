@@ -64,6 +64,33 @@ const venue2 = {
 
 }
 
+const holyCross = {
+    Name: "College of Holy Cross",
+    population: 0,
+    male: 0,
+    female: 0,
+    other: 0,
+    Admin: "",
+    venueType: "",
+    geometry: {
+        type: "Polygon",
+        coordinates: [
+            [
+                [-71.80817, 42.23729],
+                [-71.80817, 42.23729],
+                [-71.80817, 42.23729],
+                [-71.80817, 42.23729],
+                [-71.80817, 42.23729]
+            ]
+        ]
+    },
+    center: {
+        type: "Point",
+        coordinates: [-71.80817, 42.23729]
+      },
+}
+
+
 const anotherVenue = {
     Name: "maraina District",
     population: 0,
@@ -98,7 +125,7 @@ async function createVenue(venue){
     console.log(res)
     await client.close()
 }
-//createVenue(venue2)
+createVenue(holyCross)
 
 async function findWithin() {
     await client.connect();
@@ -170,4 +197,4 @@ async function getVenues() {
     return venues;
 }
 
-getVenues()
+//getVenues()
