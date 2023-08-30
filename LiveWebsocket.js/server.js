@@ -50,6 +50,17 @@ io.on("connection", (socket) => {
         body
     )=>{
 
+        console.log(
+            userName,
+            venue,
+            userId,
+            replyingTo,
+            profilePic,
+            messageId,
+            dateCreated,
+            body
+        )
+
     // emit to everyone
     io.in(venue).emit("recieve-message",
         userName,
