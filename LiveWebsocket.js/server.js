@@ -9,7 +9,7 @@ const socketRooms = new Map();
 io.on("connection", (socket) => {
 
     socket.on('disconnect', function() {
-        console.log("disconnected")
+        console.log(socket.id + " has disconnected")
         // emits the updated count to everyone when a user leaves
         if (socketRooms.has(socket.id)) {
             const rooms = socketRooms.get(socket.id);
