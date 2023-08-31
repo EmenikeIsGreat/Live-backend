@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
         profilePic,
         messageId,
         dateCreated,
-        body
+        body,
     )=>{
 
         console.log(
