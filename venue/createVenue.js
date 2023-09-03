@@ -125,7 +125,7 @@ async function createVenue(venue){
     console.log(res)
     await client.close()
 }
-createVenue(venue2)
+createVenue(holyCross)
 
 async function findWithin() {
     await client.connect();
