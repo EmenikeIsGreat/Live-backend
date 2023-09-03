@@ -1,6 +1,6 @@
 const { Server } = require("socket.io")
 
-const io = new Server(8080);
+const io = new Server(3000);
 
 
 const socketRooms = new Map();
