@@ -1,6 +1,6 @@
 const { io } = require("socket.io-client")
 
-const socket = io("ws://104.154.225.164:3000");
+const socket = io("ws://localhost:3000");
 
 // Listen for the roomCount event before emitting the join-room event
 
@@ -34,15 +34,16 @@ socket.emit("send-message",
     body
 )
 
-// socket.on("recieve-message",(
-//     name,
-//     userId,
-//     replyingTo,
-//     profilePic,
-//     messageId,
-//     dateCreated,
-//     profilePic,
-//     body
-// )=>{
+socket.on("recieve-message",(
+    userName,
+    userId,
+    replyingTo,
+    profilePic,
+    messageId,
+    dateCreated,
+    body
+)=>{
 
-// })
+    console.log("body")
+
+})
