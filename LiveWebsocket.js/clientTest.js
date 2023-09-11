@@ -22,6 +22,7 @@ let profilePic = "Test"
 let messageId = "mess"
 let dateCreated = "yo"
 let body = "Hello Emenike"
+let broadcast = true
 
 socket.emit("send-message",
     userName,
@@ -31,7 +32,8 @@ socket.emit("send-message",
     profilePic,
     messageId,
     dateCreated,
-    body
+    body,
+    broadcast
 )
 
 socket.on("recieve-message",(
@@ -41,9 +43,10 @@ socket.on("recieve-message",(
     profilePic,
     messageId,
     dateCreated,
-    body
+    body,
+    broadcast
 )=>{
 
-    console.log("body")
+    console.log(broadcast)
 
 })

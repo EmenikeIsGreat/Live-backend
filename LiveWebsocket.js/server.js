@@ -48,6 +48,7 @@ io.on("connection", (socket) => {
         messageId,
         dateCreated,
         body,
+        broadcast
     )=>{
 
         console.log(
@@ -58,7 +59,8 @@ io.on("connection", (socket) => {
             profilePic,
             messageId,
             dateCreated,
-            body
+            body,
+            broadcast
         )
 
     // emit to everyone
@@ -69,7 +71,8 @@ io.on("connection", (socket) => {
         profilePic,
         messageId,
         dateCreated,
-        body
+        body,
+        broadcast
     )
     
         
