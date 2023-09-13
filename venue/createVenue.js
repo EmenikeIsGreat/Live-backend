@@ -9,79 +9,52 @@ const { ObjectId } = require("mongodb")
 const client = new MongoClient(process.env.MONGODB_URL);
 
 
-const venue1 = {
+// these coordinates to need be going in descending order in order to work
+const Alcatraz = {
     Name:"Alcatraz",
     population:0,
     male:0,
     female:0,
     other:0,
-    Admin:"",
+    Admin:[],
     venueType:"",
     geometry: {
         type: "Polygon",
         coordinates: [
             [
-                [-122.426, 37.828],
-                [-122.421, 37.828],
-                [-122.421, 37.825],
-                [-122.426, 37.825],
-                [-122.426, 37.828]
-            ]
+                [ -122.418, 37.797 ],
+                [ -123.408, 37.792 ],
+                [ -123.418, 39 ],
+                [ -122.408, 39 ],
+                [ -122.418, 37.797 ]
+            ]            
         ]
-    },
-    center: {
-        type: "Point",
-        coordinates: [-122.4235, 37.82685]
-    }
-
-}
-
-
-const venue2 = {
-    Name:"Alcatraz",
-    population:0,
-    male:0,
-    female:0,
-    other:0,
-    Admin:"",
-    venueType:"",
-    geometry: {
-        type: "Polygon",
-        coordinates: [
-            [
-                [-122.418, 37.797],
-                [-122.408, 37.797],
-                [-122.408, 37.792],
-                [-122.418, 37.792],
-                [-122.418, 37.797]
-            ]
-        ]
+        
     },
     center: {
         type: "Point",
         coordinates: [-122.4235, 37.82685]
       },
-
 }
 
 const holyCross = {
-    Name: "College of Holy Cross",
+    Name: "Holy Cross",
     population: 0,
     male: 0,
     female: 0,
     other: 0,
-    Admin: "",
+    Admin: [],
     venueType: "",
     geometry: {
         type: "Polygon",
         coordinates: [
-            [
-                [-71.80817, 42.23729],
-                [-71.80817, 42.23729],
-                [-71.80817, 42.23729],
-                [-71.80817, 42.23729],
-                [-71.80817, 42.23729]
-            ]
+            [ 
+                [ -71, 40 ], 
+                [ -72, 40 ],
+                [ -72, 43 ], 
+                [ -71, 43 ], 
+                [ -71, 40 ] 
+              ]              
         ]
     },
     center: {
@@ -89,6 +62,7 @@ const holyCross = {
         coordinates: [-71.80817, 42.23729]
       },
 }
+
 
 
 const anotherVenue = {
@@ -125,48 +99,53 @@ async function createVenue(venue){
     console.log(res)
     await client.close()
 }
-createVenue(holyCross)
+//createVenue(holyCross)
 
 async function findWithin() {
     await client.connect();
     let locationDB = await client.db('Live').collection('Venues')
-    let cursor = await locationDB.updateMany({
+    let cursor = await locationDB.find({
         geometry: {
             $geoIntersects: {
                 $geometry: {
                     type: "Point",
-                    coordinates: [-122.4235, 37.8275]
+                    coordinates: [-122.4235, 37.82685]
                 }
             }
         }
-    },{
-        $inc: { male: 1, female:1, population:1 }
-      })
+    },//{
+    //     $inc: { male: 1, female:1, population:1 }
+    //   }
+    )
     // let results = await cursor.toArray();
-    console.log(cursor);
+    console.log(await cursor.toArray());
     client.close()
 }
 
 
 //findWithin()
 
-async function findVenuesNear(){
+async function findNear() {
     await client.connect();
     let locationDB = await client.db('Live').collection('Venues')
-    let query = {
-        center: {
-        $geoWithin: {
-            $centerSphere: [[-122.45876304,37.65600376], 5000]
+    //await locationDB.createIndex({ "geometry": "2dsphere" });
+    let cursor = await locationDB.find(
+        {
+          location:
+            { $near:
+               {
+                 $geometry: { type: "Point",  coordinates: [-122.4235, 37.82685] },
+                 $minDistance: 1000,
+                 $maxDistance: 5000000000000000000000000000000000
+               }
+            }
         }
-    }
-    };
-    let cursor = await locationDB.find(query)
-    let results = await cursor.toArray();
-    console.log(results);
+     )
+    console.log(await cursor.toArray());
     client.close()
-
 }
-//findVenuesNear()
+//findNear()
+
 async function getVenues() {
     await client.connect()
     const locationDB = await client.db('Live').collection('Venues');
@@ -185,7 +164,7 @@ async function getVenues() {
             $geoIntersects: {
               $geometry: {
                 type: "Point",
-                coordinates: [-122.414, 37.795]
+                coordinates: [-122.4235, 37.82685]
               }
             }
           }
