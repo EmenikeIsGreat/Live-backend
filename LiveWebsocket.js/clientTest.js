@@ -14,7 +14,7 @@ socket.on("roomCount", message => {
 })
 
 
-let userName = "Emenike"
+let username = "Emenike"
 let venue = "Alcatraz"
 let userId = "d"
 let replyingTo = "Emenike"
@@ -25,7 +25,7 @@ let body = "Hello Emenike"
 let broadcast = true
 
 socket.emit("send-message",
-    userName,
+    username,
     venue,
     userId,
     replyingTo,
@@ -36,8 +36,8 @@ socket.emit("send-message",
     broadcast
 )
 
-socket.on("recieve-message",(
-    userName,
+socket.on("receive-message",(
+    username,
     userId,
     replyingTo,
     profilePic,

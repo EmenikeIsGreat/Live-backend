@@ -26,7 +26,7 @@ async function generateAndInsertRandomMessages(numMessages, numFromUser, userId,
           haha: Math.floor(Math.random() * 10)
         },
         replyingTo: null,
-        anonymousUserName: null,
+        anonymoususername: null,
         isPinned: false,
         createdAt: new Date()
       };

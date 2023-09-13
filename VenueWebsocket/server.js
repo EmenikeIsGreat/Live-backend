@@ -7,7 +7,7 @@ io.on("connection", (socket) => {
   // receive a message from the client
   socket.emit("connection","YO")
   socket.on("hello from client", (message,room) => {
-    console.log("recieved")
+    console.log("received")
     var numClients = io.sockets.adapter.rooms.get(room);
     console.log(numClients)
     // adding a boradcast for this essentially makes it so that it emits to everyone but the one who sent it

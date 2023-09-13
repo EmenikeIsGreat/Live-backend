@@ -37,10 +37,8 @@ io.on("connection", (socket) => {
         console.log(room + " room size : ",io.sockets.adapter.rooms.get(room).size)
     })
 
-
-
     socket.on("send-message",(
-        userName,
+        username,
         venue,
         userId,
         replyingTo,
@@ -48,11 +46,11 @@ io.on("connection", (socket) => {
         messageId,
         dateCreated,
         body,
-        broadcast
+        broadcast,
+        userAnonymous
     )=>{
-
         console.log(
-            userName,
+            username,
             venue,
             userId,
             replyingTo,
@@ -60,23 +58,22 @@ io.on("connection", (socket) => {
             messageId,
             dateCreated,
             body,
-            broadcast
+            broadcast,
+            userAnonymous
         )
 
-    // emit to everyone
-    io.in(venue).emit("recieve-message",
-        userName,
-        userId,
-        replyingTo,
-        profilePic,
-        messageId,
-        dateCreated,
-        body,
-        broadcast
-    )
-    
-        
-    
+        // emit to everyone
+        io.in(venue).emit("receive-message",
+            username,
+            userId,
+            replyingTo,
+            profilePic,
+            messageId,
+            dateCreated,
+            body,
+            broadcast,
+            userAnonymous
+        )
     })
 });
 

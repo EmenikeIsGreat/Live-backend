@@ -13,7 +13,7 @@ socket.on("roomCount", (data) => {
   console.log(data)
 });
 
-socket.on("recieve-message", (data) => {
+socket.on("receive-message", (data) => {
   console.log(data)
 });
 
