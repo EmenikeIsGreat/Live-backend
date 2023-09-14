@@ -10,45 +10,18 @@ async function main() {
     service:"gmail",
     auth:{
         user:"emenikeemail@gmail.com",
-        pass:"kydrudoc ektt osqv"
+        pass:"eurg ftcp lfyr dwuc"
     }
   }
   
 
   let transporter = nodemailer.createTransport(config);
 
-    let MailGenerator = new Mailgen({
-        theme: "default",
-        product : {
-            name: "Mailgen",
-            link : 'https://mailgen.js/'
-        }
-    })
-
-    let response = {
-        body: {
-            name : "Daily Tuition",
-            intro: "Your bill has arrived!",
-            table : {
-                data : [
-                    {
-                        item : "Nodemailer Stack Book",
-                        description: "A Backend application",
-                        price : "$10.99",
-                    }
-                ]
-            },
-            outro: "Looking forward to do more business"
-        }
-    }
-
-    let mail = MailGenerator.generate(response)
-
     let message = {
         from : "emenikeani3@gmail.com",
-        to : "emenikeemail@gmail.com",
+        to : "jm.siekiera@gmail.com",
         subject: "Place Order",
-        text:"YO"
+        text:"YOSKIIIIII"
     }
 
     transporter.sendMail(message).then((res) => {
