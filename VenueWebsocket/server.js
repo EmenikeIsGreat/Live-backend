@@ -26,5 +26,13 @@ io.on("connection", (socket) => {
     // console.log("joined Room")
     // console.log("rooms after: ",socket.rooms)
   })
+
+  socket.on("deleteMessage",room=>{
+    console.log('yoooooooooooooooo')
+    // console.log("rooms before: ",socket.rooms)
+    // console.log("joined Room")
+    // console.log("rooms after: ",socket.rooms)
+  })
+
 });
 

@@ -75,5 +75,9 @@ io.on("connection", (socket) => {
             userAnonymous
         )
     })
+
+    socket.on("deleteMessage",(room,messageId)=>{
+        io.in(room).emit("deleteMessage",messageId)
+    })
 });
 

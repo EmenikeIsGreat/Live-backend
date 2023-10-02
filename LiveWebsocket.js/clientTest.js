@@ -50,3 +50,10 @@ socket.on("receive-message",(
     console.log(broadcast)
 
 })
+
+socket.emit("deleteMessage","Alcatraz","sample");
+socket.on("deleteMessage",message=>{
+
+    console.log(message)
+
+})
