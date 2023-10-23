@@ -1,6 +1,6 @@
 const { io } = require("socket.io-client")
 
-const socket = io("ws://localhost:3000");
+const socket = io("ws://34.70.174.42:3000");
 
 // Listen for the roomCount event before emitting the join-room event
 
