@@ -61,6 +61,7 @@ const holyCross = {
         type: "Point",
         coordinates: [-71.80817, 42.23729]
       },
+    profilePic:""
 }
 
 
