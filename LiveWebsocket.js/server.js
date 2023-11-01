@@ -89,7 +89,7 @@ io.on("connection", (socket) => {
         console.log(from, to, body, type);
 
         // emit to the recipient
-        io.to(to).emit("receive-dm", from, body, type);
+        io.to(users[to]).emit("receive-dm", from, body, type);
     });
 });
 
