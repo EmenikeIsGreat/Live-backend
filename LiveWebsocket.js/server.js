@@ -4,6 +4,7 @@ const io = new Server(3000);
 
 
 const socketRooms = new Map();
+const users = new Map()
 
 
 io.on("connection", (socket) => {
@@ -22,6 +23,10 @@ io.on("connection", (socket) => {
             socketRooms.delete(socket.id);
         }
       });
+
+    socket.on('register', (username) => {
+        users.set(username, socket.id);
+    });
 
     // joining the room and getting count of people inside
     socket.on("join-room",room=>{
@@ -79,5 +84,12 @@ io.on("connection", (socket) => {
     socket.on("deleteMessage",(room,messageId)=>{
         io.in(room).emit("deleteMessage",messageId)
     })
+
+    socket.on("send-dm", (from, to, body, type) => {
+        console.log(from, to, body, type);
+
+        // emit to the recipient
+        io.to(to).emit("receive-dm", from, body, type);
+    });
 });
 
