@@ -86,10 +86,12 @@ io.on("connection", (socket) => {
     })
 
     socket.on("send-dm", (from, to, body, type) => {
-        console.log(from, to, body, type);
+        // console.log("yoooooo")
+        // console.log(from, to, body, type);
 
-        // emit to the recipient
-        io.to(users[to]).emit("receive-dm", from, body, type);
+        // // emit to the recipient
+        // console.log(users[to])
+        io.to(users.get(to)).emit("receive-dm", from, body, type);
     });
 });
 

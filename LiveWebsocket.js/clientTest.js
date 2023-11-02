@@ -1,6 +1,7 @@
 const { io } = require("socket.io-client")
 
-const socket = io("ws://34.70.174.42:3000");
+// const socket = io("ws://34.70.174.42:3000");
+const socket = io("http://localhost:3000");
 
 // Listen for the roomCount event before emitting the join-room event
 
@@ -8,6 +9,8 @@ const socket = io("ws://34.70.174.42:3000");
 socket.emit("join-room", "Alcatraz",(res)=>{
     console.log(res)
 })
+
+socket.emit('register', 'Alice');
 
 socket.on("roomCount", message => {
     console.log(message)
@@ -52,8 +55,16 @@ socket.on("receive-message",(
 })
 
 socket.emit("deleteMessage","Alcatraz","sample");
+
 socket.on("deleteMessage",message=>{
 
     console.log(message)
 
 })
+
+socket.on("receive-dm", (from, body, type) => {
+    console.log(`Received a ${type} DM from ${from}: ${body}`);
+});
+
+
+  
