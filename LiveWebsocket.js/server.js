@@ -85,13 +85,25 @@ io.on("connection", (socket) => {
         io.in(room).emit("deleteMessage",messageId)
     })
 
-    socket.on("send-dm", (from, to, body, type) => {
-        // console.log("yoooooo")
-        // console.log(from, to, body, type);
-
-        // // emit to the recipient
-        // console.log(users[to])
-        io.to(users.get(to)).emit("receive-dm", from, body, type);
+    socket.on("send-dm", (
+        username,
+        userId,
+        replyingTo,
+        profilePic,
+        messageId,
+        dateCreated,
+        body,
+        userAnonymous
+    ) => {
+        io.to(users.get(to)).emit("receive-dm", 
+            username,
+            userId,
+            replyingTo,
+            profilePic,
+            messageId,
+            dateCreated,
+            body,
+            userAnonymous);
     });
 });
 

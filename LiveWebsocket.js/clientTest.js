@@ -62,7 +62,15 @@ socket.on("deleteMessage",message=>{
 
 })
 
-socket.on("receive-dm", (from, body, type) => {
+socket.on("receive-dm", (
+    username,
+    userId,
+    replyingTo,
+    profilePic,
+    messageId,
+    dateCreated,
+    body,
+    userAnonymous) => {
     console.log(`Received a ${type} DM from ${from}: ${body}`);
 });
 
