@@ -95,6 +95,7 @@ io.on("connection", (socket) => {
         body,
         userAnonymous
     ) => {
+        console.log("sent message to: ",users.get(username))
         io.to(users.get(username)).emit("receive-dm", 
             username,
             userId,
