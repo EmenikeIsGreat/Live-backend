@@ -95,7 +95,7 @@ io.on("connection", (socket) => {
         body,
         userAnonymous
     ) => {
-        io.to(users.get(to)).emit("receive-dm", 
+        io.to(users.get(username)).emit("receive-dm", 
             username,
             userId,
             replyingTo,
